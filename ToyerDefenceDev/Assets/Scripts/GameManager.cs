@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public Transform[] enemyWaves;
 
-    [SerializeField]  private Level[] _levels;
+    public Level[] levels;
 
     public int currentLevel = 0;
 
@@ -22,24 +22,35 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        currentLevel = 1;
-        beforeStartTheLevel += IncreaseLevel;
+        currentLevel = 0;
+        //beforeStartTheLevel += IncreaseLevel;
         beforeStartTheLevel += AssignValues;
-        StartNewLevel();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            currentLevel++;
+            StartNewLevel();
+        }
     }
 
     public  void AssignValues()
     {
-        enemyWaves = new Transform[_levels[currentLevel - 1].pathsForEnemies.Length];
-        for (int i = 0; i < _levels[currentLevel-1].pathsForEnemies.Length;  i++)
+        enemyWaves = new Transform[levels[currentLevel - 1].pathsForEnemies.Length];
+        for (int i = 0; i < levels[currentLevel-1].pathsForEnemies.Length;  i++)
         {
-            enemyWaves[i] = _levels[currentLevel-1].pathsForEnemies[i];
+            enemyWaves[i] = levels[currentLevel-1].pathsForEnemies[i];
         }
     }
 
     private void IncreaseLevel()
     {
-        currentLevel++;
+        if (levels.Length-1>currentLevel)
+        {
+            currentLevel++;
+        }
+        
     }
 
     public void StartNewLevel()
