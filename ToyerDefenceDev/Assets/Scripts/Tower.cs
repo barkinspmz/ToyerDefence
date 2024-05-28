@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour
         if (other.tag == "Enemy")
         {
             howManyEnemyInTower++;
+            Debug.Log("ENEMY AMOUNT IN TOWER: " + howManyEnemyInTower);
         }
     }
     

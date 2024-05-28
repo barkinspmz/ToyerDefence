@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private Transform[] _paths;
-    private float _moveSpeed = 5f;
+    private float _moveSpeed = 3f;
     private int _indexForPath = 0;
     void Start()
     {
