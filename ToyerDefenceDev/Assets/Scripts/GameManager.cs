@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            currentLevel++;
+            IncreaseLevel();
             StartNewLevel();
         }
     }
@@ -49,8 +49,7 @@ public class GameManager : MonoBehaviour
         if (levels.Length-1>currentLevel)
         {
             currentLevel++;
-        }
-        
+        }    
     }
 
     public void StartNewLevel()
