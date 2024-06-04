@@ -5,10 +5,11 @@ using System.Linq;
 
 public class AttackerBuilding01 : MonoBehaviour
 {
-    private List<GameObject> enemies = new List<GameObject>();
+    [SerializeField]private List<GameObject> enemies;
 
     public float damageAmount = 10;
     public float attackSpeed = 1.5f;
+    public bool isAttack = false;
     void Start()
     {
         GameManager.Instance.beforeStartTheLevel += UpdateListAmount;
@@ -17,7 +18,7 @@ public class AttackerBuilding01 : MonoBehaviour
     
     void Update()
     {
-        if (enemies[0] != null)
+        if (enemies.Count>0 && isAttack)
         {
             transform.LookAt(enemies[0].transform.position, Vector3.up);
         }
@@ -25,17 +26,17 @@ public class AttackerBuilding01 : MonoBehaviour
 
     void UpdateListAmount()
     {
-        foreach (var item in enemies)
+        if(enemies !=null)
         {
-            enemies.Remove(item);
+            enemies.Clear();
         }
-
-        enemies = new List<GameObject>(GameManager.Instance.levels[GameManager.Instance.currentLevel-1].enemyAmount);
+        enemies = new List<GameObject>(GameManager.Instance.levels[GameManager.Instance.currentLevel - 1].enemyAmount);
+        Debug.Log(enemies.Count);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && isAttack)
         {
             enemies.Add(other.gameObject);
         }
@@ -43,7 +44,7 @@ public class AttackerBuilding01 : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy"&& isAttack)
         {
             enemies.Remove(other.gameObject);
         }

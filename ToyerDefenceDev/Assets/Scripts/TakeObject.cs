@@ -5,37 +5,63 @@ using UnityEngine;
 public class TakeObject : MonoBehaviour
 {
     RaycastHit _hit;
-    [SerializeField] Transform _startPositionOfRay;
-    private float _range = 100f;
+    private float _range = 100000f;
 
     private bool _canTakeObject;
     private GameObject _currentGrabbedObject;
+
+    public bool isLeftHand = false;
 
     void Update()
     {
         //When this script works at the same time in both hand, it will be error, seperate it later.
         //
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+        if (isLeftHand)
         {
-            _canTakeObject = true;
-        }
-
-        if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
-        {
-            _canTakeObject = false;
-            if (_currentGrabbedObject !=null)
+            if (OVRInput.GetDown(OVRInput.Button.Four))
             {
-                _currentGrabbedObject.transform.parent = null;
-                _currentGrabbedObject.GetComponent<Rigidbody>().useGravity = true;
-                _currentGrabbedObject.GetComponent<Rigidbody>().isKinematic = false;
-                _currentGrabbedObject = null;
+                _canTakeObject = true;
+            }
+
+            if (OVRInput.GetUp(OVRInput.Button.Four))
+            {
+                _currentGrabbedObject.GetComponentInChildren<AttackerBuilding01>().isAttack = true;
+                _canTakeObject = false;
+                if (_currentGrabbedObject != null)
+                {
+                    _currentGrabbedObject.transform.parent = null;
+                    _currentGrabbedObject.GetComponent<Rigidbody>().useGravity = true;
+                    _currentGrabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+                    _currentGrabbedObject = null;
+                }
             }
         }
+        else
+        {
+            if(OVRInput.GetDown(OVRInput.Button.Two))
+            {
+                _canTakeObject = true;
+            }
+
+            if (OVRInput.GetUp(OVRInput.Button.Two))
+            {
+                _currentGrabbedObject.GetComponentInChildren<AttackerBuilding01>().isAttack = true;
+                _canTakeObject = false;
+                if (_currentGrabbedObject != null)
+                {
+                    _currentGrabbedObject.transform.parent = null;
+                    _currentGrabbedObject.GetComponent<Rigidbody>().useGravity = true;
+                    _currentGrabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+                    _currentGrabbedObject = null;
+                }
+            }
+        }
+       
         //It cast a ray to forward
-        Ray ray = new Ray(_startPositionOfRay.position, _startPositionOfRay.forward);
+        Ray ray = new Ray(transform.position, transform.forward);
 
         //Checking there is hitted object or not.
-        if (Physics.Raycast(ray, out _hit, _range)&&_canTakeObject) // && When the Grab Button Triggered.
+        if (Physics.Raycast(ray, out _hit, _range)&&_canTakeObject&&_currentGrabbedObject==null) // && When the Grab Button Triggered.
         {
             if (_hit.collider.gameObject.TryGetComponent(out IInteractable interactedObj))
             {

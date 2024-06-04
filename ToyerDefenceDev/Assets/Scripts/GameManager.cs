@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentLevel = 0;
-        //beforeStartTheLevel += IncreaseLevel;
         beforeStartTheLevel += AssignValues;
     }
     private void Update()
@@ -54,6 +53,14 @@ public class GameManager : MonoBehaviour
 
     public void StartNewLevel()
     {
+        AttackerBuilding01[] attackers = GameObject.FindObjectsOfType<AttackerBuilding01>();
+        if (attackers!=null)
+        {
+            foreach (var item in attackers)
+            {
+                item.isAttack = true;
+            }
+        }
         beforeStartTheLevel.Invoke();
     }
 }
