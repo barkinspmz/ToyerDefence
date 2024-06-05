@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public GameObject restartButton;
+    public GameObject startButton;
+    public GameObject timerButton;
     public int howManyEnemyInTower;
     void Start()
     {
@@ -16,6 +19,12 @@ public class Tower : MonoBehaviour
         {
             howManyEnemyInTower++;
             Debug.Log("ENEMY AMOUNT IN TOWER: " + howManyEnemyInTower);
+            if (howManyEnemyInTower > GameManager.Instance.levels[GameManager.Instance.currentLevel-1].enemyAmount%2)
+            {
+                timerButton.SetActive(false);
+                startButton.SetActive(false);
+                restartButton.SetActive(true);
+            }
         }
     }
     

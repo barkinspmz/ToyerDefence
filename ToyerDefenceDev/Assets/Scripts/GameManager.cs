@@ -27,11 +27,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            IncreaseLevel();
-            StartNewLevel();
-        }
+
     }
 
     public  void AssignValues()
@@ -45,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseLevel()
     {
-        if (levels.Length-1>currentLevel)
+        if (levels.Length>currentLevel)
         {
             currentLevel++;
         }    
