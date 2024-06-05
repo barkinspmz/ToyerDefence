@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public int health = 100;
     private Transform[] _paths;
-    private float _moveSpeed = 3f;
+    private float _moveSpeed = 1f;
     private int _indexForPath = 0;
     
     void Start()
