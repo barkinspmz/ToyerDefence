@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void IncreaseLevel()
+    public void IncreaseLevel()
     {
         if (levels.Length-1>currentLevel)
         {

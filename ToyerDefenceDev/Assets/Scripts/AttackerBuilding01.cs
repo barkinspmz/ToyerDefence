@@ -7,9 +7,10 @@ public class AttackerBuilding01 : MonoBehaviour
 {
     [SerializeField]private List<GameObject> enemies;
 
-    public float damageAmount = 10;
+    public int damageAmount = 40;
     public float attackSpeed = 1.5f;
     public bool isAttack = false;
+    private bool canAttack = true;
     void Start()
     {
         GameManager.Instance.beforeStartTheLevel += UpdateListAmount;
@@ -39,14 +40,34 @@ public class AttackerBuilding01 : MonoBehaviour
         if (other.tag == "Enemy" && isAttack)
         {
             enemies.Add(other.gameObject);
+            canAttack = true;
+            StartCoroutine(AttackingNumerator(other.gameObject.GetComponent<EnemyMovement>()));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Enemy"&& isAttack)
+        if (other.tag == "Enemy"&& isAttack&&other.gameObject != null)
         {
             enemies.Remove(other.gameObject);
+            canAttack = false;
+            StopCoroutine(AttackingNumerator(other.gameObject.GetComponent<EnemyMovement>()));
+        }
+    }
+
+    //This is the area where the player shoots.
+    IEnumerator AttackingNumerator(EnemyMovement enemy)
+    {
+        while (canAttack)
+        {   
+            Debug.Log("Shooted! Enemy has: " + enemy.health);
+            enemy.health -= damageAmount;
+            if (enemy.health<=0)
+            {
+                enemies.Remove(enemy.gameObject);
+                Destroy(enemy.gameObject);
+            }
+            yield return new WaitForSeconds(attackSpeed);
         }
     }
 }

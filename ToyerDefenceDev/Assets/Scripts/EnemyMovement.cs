@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public int health = 100;
     private Transform[] _paths;
     private float _moveSpeed = 3f;
     private int _indexForPath = 0;
+    
     void Start()
     {
+        
+        health = 100;
         _paths = new Transform[GameManager.Instance.enemyWaves.Length];
         for (int i = 0; i < GameManager.Instance.enemyWaves.Length; i++)
         {
