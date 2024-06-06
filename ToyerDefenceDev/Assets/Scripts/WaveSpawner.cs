@@ -35,6 +35,18 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1f);
             _timerTotal--;
             timerText.text = "Timer: " + _timerTotal.ToString();
+            if (GameManager.Instance.levels[GameManager.Instance.currentLevel - 1].enemyAmount <= 0)
+            {
+                startWaveButton.SetActive(true);
+                if (allInLevelButtons != null)
+                {
+                    foreach (var item in allInLevelButtons)
+                    {
+                        item.SetActive(true);
+                    }
+                }
+                _timerTotal = 0;
+            }
         }
         if (GameManager.Instance.levels[GameManager.Instance.currentLevel-1].enemyAmount>0)
         {
@@ -48,7 +60,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 foreach (var item in allInLevelButtons)
                 {
-                    item.SetActive(false);
+                    item.SetActive(true);
                 }
             }
         }
@@ -62,6 +74,7 @@ public class WaveSpawner : MonoBehaviour
         while (_timerTotal > 0 && enemyAmountPerLevel > 0)
         {
             yield return new WaitForSeconds(delayBetweenSpawn);
+            GameManager.Instance.levels[GameManager.Instance.currentLevel - 1].enemyAmount--;
             switch (GameManager.Instance.levels[GameManager.Instance.currentLevel-1].difficulty)    
             {
                 case Level.DifficultyOfLevel.Low:

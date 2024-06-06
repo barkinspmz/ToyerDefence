@@ -42,6 +42,13 @@ public class ButtonManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StartNewLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartLevel();
+        }
     }
 }

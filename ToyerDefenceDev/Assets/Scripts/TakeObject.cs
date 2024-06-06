@@ -65,10 +65,6 @@ public class TakeObject : MonoBehaviour
         //It cast a ray to forward
         Ray ray = new Ray(transform.position, transform.forward);
         Debug.DrawRay(transform.position, transform.forward, Color.green,_range);
-        if (Physics.Raycast(ray, out _hit, _range)) // && When the Grab Button Triggered.
-        {
-            Debug.Log(_hit.collider.gameObject.name);
-        }
         //Checking there is hitted object or not.
         if (Physics.Raycast(ray, out _hit, _range)&&_canTakeObject&&_currentGrabbedObject==null) // && When the Grab Button Triggered.
         {

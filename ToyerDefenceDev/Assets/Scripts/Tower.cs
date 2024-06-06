@@ -18,8 +18,9 @@ public class Tower : MonoBehaviour
         if (other.tag == "Enemy")
         {
             howManyEnemyInTower++;
+            Destroy(other.gameObject);
             Debug.Log("ENEMY AMOUNT IN TOWER: " + howManyEnemyInTower);
-            if (howManyEnemyInTower > GameManager.Instance.levels[GameManager.Instance.currentLevel-1].enemyAmount%2)
+            if (howManyEnemyInTower > GameManager.Instance.levels[GameManager.Instance.currentLevel-1].enemyAmount-3)
             {
                 timerButton.SetActive(false);
                 startButton.SetActive(false);

@@ -4,7 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MelisaScene.unity
+    guid: ac4119759a884b642b4a6da0422ca037
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: c27881b87a05f384ab7504812b7a6223, type: 2}
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: a2ea85cdb13f781449a5bffa6ebee519, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 0593eb1127783404882a721bc439b110, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: cb3d5fdb8aab2a846bde1e49cc475f6b, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 721b9e42bba8693429f400ec2b6c7949, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 40ff46cd0051aa44b95ad90581e46204, type: 2}

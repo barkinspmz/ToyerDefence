@@ -47,3 +47,9 @@ MonoBehaviour:
   enemy01: {fileID: 8048730279319603396, guid: b7ec2ebb869b941b08bfab1d63b1a89e, type: 3}
   enemy02: {fileID: 8048730279319603396, guid: afbe25a71dc88489888cedea24097830, type: 3}
   enemy03: {fileID: 8048730279319603396, guid: 3d01c5d810d664386b1d2860bc14b6cf, type: 3}
+  allInLevelButtons:
+  - {fileID: 0}
+  startWaveButton: {fileID: 0}
+  restartButton: {fileID: 0}
+  timerText: {fileID: 0}
+  timerButton: {fileID: 0}

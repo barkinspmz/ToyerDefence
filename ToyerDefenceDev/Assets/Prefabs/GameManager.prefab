@@ -51,7 +51,7 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    totalTimerForWaveSpawn: 90
+    totalTimerForWaveSpawn: 10
     delayForSpawn: 4
     enemyAmount: 10
     spawnPoint: {fileID: 0}
@@ -66,4 +66,4 @@ MonoBehaviour:
     enemyAmount: 12
     spawnPoint: {fileID: 0}
     difficulty: 1
-  currentLevel: 1
+  currentLevel: 0
